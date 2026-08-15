@@ -1,0 +1,86 @@
+{
+  "snapshotVersion": 1,
+  "capturedAt": "2026-08-15T00:00:00.000Z",
+  "server": {
+    "name": "storybook-mcp-devtools-sample",
+    "version": "1.0.0"
+  },
+  "capabilities": {
+    "tools": {},
+    "resources": {}
+  },
+  "tools": [
+    {
+      "name": "increment-counter",
+      "title": "Increment counter",
+      "description": "Increment a local demonstration counter by an explicit amount.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 1
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "count": { "type": "number" },
+          "changedBy": { "type": "number" }
+        },
+        "required": ["count", "changedBy"],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Increment counter",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "ui": {
+          "resourceUri": "ui://storybook-mcp-devtools/counter",
+          "visibility": ["model", "app"]
+        }
+      },
+      "app": {
+        "uri": "ui://storybook-mcp-devtools/counter",
+        "mimeType": "text/html;profile=mcp-app",
+        "csp": {},
+        "permissions": {}
+      }
+    },
+    {
+      "name": "current-time",
+      "title": "Current time",
+      "description": "Return the current time for a requested IANA time zone.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "timeZone": { "type": "string", "default": "UTC" }
+        }
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "iso": { "type": "string" },
+          "formatted": { "type": "string" },
+          "timeZone": { "type": "string" }
+        },
+        "required": ["iso", "formatted", "timeZone"],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Current time",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ]
+}

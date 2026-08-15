@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Vite+
+        run: curl -fsSL https://vite.plus | VP_VERSION=0.2.8 bash
+      - name: Install dependencies
+        run: ~/.vite-plus/bin/vp install
+      - name: Check
+        run: ~/.vite-plus/bin/vp check
+      - name: Test
+        run: ~/.vite-plus/bin/vp test
+      - name: Build addon
+        run: ~/.vite-plus/bin/vp pack
+      - name: Build static Storybook
+        run: ~/.vite-plus/bin/vp run storybook:build
