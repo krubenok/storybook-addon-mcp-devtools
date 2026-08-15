@@ -11,7 +11,7 @@ const config: StorybookConfig = {
       options: {
         endpoint: 'http://127.0.0.1:6123/mcp',
         sandboxUrl: 'http://127.0.0.1:6124/sandbox.html',
-        snapshotUrl: '/__mcp-devtools/catalog.json',
+        snapshotUrl: './__mcp-devtools/catalog.json',
       },
     },
   ],

@@ -2,6 +2,8 @@
 
 Storybook developer tools for browsing Model Context Protocol (MCP) tools, invoking them with explicit human approval, inspecting complete results, and developing [MCP Apps](https://github.com/modelcontextprotocol/ext-apps).
 
+[View the static Storybook demo](https://krubenok.github.io/storybook-addon-mcp-devtools/). It uses the checked-in catalog snapshot, so tool calls and MCP App execution are intentionally disabled.
+
 This addon is complementary to Storybook's official [`@storybook/addon-mcp`](https://github.com/storybookjs/storybook/tree/next/code/addons/mcp). The official addon exposes a Storybook as an MCP server. This project is an MCP **client and Apps development host** inside Storybook.
 
 > [!IMPORTANT]
@@ -55,7 +57,7 @@ const config: StorybookConfig = {
           ? { authorization: `Bearer ${process.env.MCP_TOKEN}` }
           : undefined,
         sandboxUrl: 'https://mcp-app-sandbox.example.test/sandbox.html',
-        snapshotUrl: '/mcp-catalog/catalog.json',
+        snapshotUrl: './mcp-catalog/catalog.json',
       },
     },
   ],
