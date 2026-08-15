@@ -1,0 +1,88 @@
+{
+  "name": "storybook-addon-mcp-devtools",
+  "version": "0.1.0",
+  "description": "Storybook developer tools for browsing MCP tools, invoking them, and previewing MCP Apps.",
+  "keywords": [
+    "developer-tools",
+    "mcp",
+    "model-context-protocol",
+    "storybook-addon"
+  ],
+  "homepage": "https://github.com/krubenok/storybook-addon-mcp-devtools#readme",
+  "bugs": {
+    "url": "https://github.com/krubenok/storybook-addon-mcp-devtools/issues"
+  },
+  "license": "MIT",
+  "author": "Kyle Rubenok",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krubenok/storybook-addon-mcp-devtools.git"
+  },
+  "bin": {
+    "mcp-devtools-snapshot": "./dist/cli/snapshot.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./manager": "./dist/manager.js",
+    "./preview": {
+      "types": "./dist/preview.d.ts",
+      "default": "./dist/preview.js"
+    },
+    "./preset": "./dist/preset.js",
+    "./catalog": {
+      "types": "./dist/catalog.d.ts",
+      "default": "./dist/catalog.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n addon,storybook \"vp pack --watch\" \"storybook dev -p 6006 --quiet\"",
+    "sample": "vp pack && concurrently -k -n mcp,sandbox,storybook \"tsx sample/server.ts\" \"tsx sample/sandbox-server.ts\" \"storybook dev -p 6006 --quiet\"",
+    "sample:snapshot": "tsx src/cli/snapshot.ts --endpoint http://127.0.0.1:6123/mcp --output sample/snapshots/catalog.json",
+    "storybook": "storybook dev -p 6006",
+    "storybook:build": "storybook build",
+    "ci": "vp check && vp test && vp pack && storybook build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "^1.7.5",
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "ajv": "^8.20.0",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@storybook/addon-docs": "10.5.7",
+    "@storybook/react-vite": "10.5.7",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "concurrently": "^9.2.1",
+    "express": "^5.1.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "storybook": "10.5.7",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vite-plus": "0.2.8"
+  },
+  "peerDependencies": {
+    "storybook": ">=9.0.0 <11"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@10.22.0"
+}
